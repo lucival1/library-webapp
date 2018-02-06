@@ -24,11 +24,7 @@
   
   //fetch all books that are overdue in the database and stores in a variable
   if(isset($_GET['booksoverdue'])){
-    include('scripts/db.php');
-    $stmt = $DBH->prepare("SELECT * FROM checked_out_books WHERE return_date < CURRENT_DATE()");
-    $stmt->execute();
-    include('scripts/errordb.php');
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    include('scripts/booksoverdue_btn.php');
   }  
   
   //when a new books form is submitted we run the following validation code
@@ -70,10 +66,8 @@
       include('scripts/check_in.php');
     }
   }
-      
 
-  
-  //validate data from undesirable chars
+//validate data from undesirable chars
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -81,6 +75,7 @@ function test_input($data) {
   return $data;
 }
 ?>
+
 <h2>CCT Library</h2><br></br>
 <p>Welcome <?php echo $_SESSION["username"];?></p>
 

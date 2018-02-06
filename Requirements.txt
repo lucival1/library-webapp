@@ -1,0 +1,58 @@
+The College has asked for an online Library to be created for the current library books in stock and any
+new ones that are purchased. The system currently used is a paper based system and they would like the
+system automated.
+Design and implement a web based application for the College to allow students to login and search for
+books and to check out books from the library.
+The system will be available in the library via a desktop computer located by reception.
+
+​User Accounts​
+As the system will be used by a number of different people, different user account types must be created.
+Depending on the account type, different options in the system will be available to them. This can be done
+by redirecting the user to the correct page once logged in.
+● Student - A student should be able to log into the system and search for a book from the library.
+They should be able to check out a book and view all their currently checkout books along with
+the due date
+● Admin - The system admin should be able to login and view all books currently checked out,
+indicating which student has checked out the book. They should also be able to view all books
+that have been checked out and books that are past their due date. They should also be able to
+input a new book to the library.
+
+​System Requirements​
+● When user opens the application, they should be greeted with two main options, register on the
+system for a new account or to login to the system with an existing account.
+● Students who register must enter a username, their Student Id and a password.
+● A login page for students and Admin to access the library. Students should be validated against a
+users table with username and password. Student should be directed to appropriate home page.
+● A secret Admin account has been created. Admin can login with username: Admin and password:
+Admin. This combination will bypass the validation against the users table and proceed to Admin
+home page, with appropriate session set.
+● All of the pages which the user is viewing should always be validated to ensure that a user is not
+on a page without having a validated account.
+● After a Student has logged into the system, they should be presented with four main options on
+their home page.
+1. Search the library for books using title, including wildcard search.
+2. Checkout a book from the library if it is available.
+3. View their checked out books, displaying due date.
+4. Logout of the system, invalidating the current session.
+● After an Admin has logged into the system, they should be presented with five main options on
+their home page.
+5. View Checked out books
+6. Check a book back in
+7. View books past their due date with student id displayed.
+8. Add a new book to the system
+9. Logout of the system, invalidating the current session.
+● Checked out books should be stored with today’s date and return date +1 week
+● Storing passwords in plain text is a security issue that should be avoided. When users register for
+a new account, the password that they enter should be hashed and salted.
+● All input fields should be validated using client side validation, checking for length and blank
+values.
+● All input fields should be validated using server side validation, checking for length and blank
+values.
+● After any user has logged in, a session should be started storing their username and a token to
+ensure that the current session is valid
+● After a user has finished with the system, an option should exist to logout and destroy the current
+session.
+● As the college is sensitive to automated attacks, a CAPTCHA should be added onto the
+registration page to ensure that automated bots cannot register.
+● Wireframes for the system should be developed, to ensure that the college will sign off on the
+overall structure of the program before the development process is started.

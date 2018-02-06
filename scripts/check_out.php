@@ -62,7 +62,7 @@
     header("Location:user_home.php");
   }
   //after the DB is used the page is redirected to user_home after 2 seconds
-  header("refresh:2;url=user_home.php");
+  header("refresh:2;url=../user_home.php");
 ?>
 <br/>
 <span class="info_msg"><?php echo $checkout_msg;?></span>.<br/>

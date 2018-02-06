@@ -1,5 +1,5 @@
 <?php 
-  //check if the array possess any values before creating table
+  //check if the array possess any values before creating books checked out table
   if (is_array($rows) || is_object($rows)){
     echo "<table class='table-style'>";
     echo  "<tr><th>Student ID</th><th>ISBN</th><th>Quantity</th><th>Borrow Date</th><th>Return Date</th></tr>";

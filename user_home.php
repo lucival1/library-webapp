@@ -39,6 +39,10 @@
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
   
+  if(isset($_GET['checkedout'])){
+      include('scripts/checked_out.php');
+  }
+  
   //clean data from undesirable chars
 function test_input($data) {
   $data = trim($data);
@@ -64,7 +68,7 @@ function test_input($data) {
     <form class='form-style' action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
     <input type="submit" name="checkall" value="Check all" class='button'/></form>
 
-    <form class='form-style' action="scripts/checked_out.php" method="get">
+    <form class='form-style' action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
     <input type="submit" name="checkedout" value="Checked out" class='button'/></form>
 
     <form class='form-style' action="scripts/logout.php" method="get">
@@ -79,32 +83,60 @@ function test_input($data) {
   <div class='body-style' id='right-body'>
     <span><?php
       //check if the array possess any values before creating table
-      if (is_array($rows) || is_object($rows)){
-        echo "<table class='table-style'>";
-          echo "<tr><th>Title</th><th>Author</th><th>ISBN</th><th>Quantity</th><th></th></tr>";
-          foreach($rows as $row){
-            echo "<tr>";
-            echo "<td>";
-            echo $row['title'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['author'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['isbn'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['quantity'];
-            echo "</td>";
-            if($row['quantity'] > 0){
-              echo "<td>";//view link
-              echo "<a href=scripts/check_out.php?isbn=".$row['isbn'].">Check Out</a>";
+      if(isset($_GET['checkall']) or isset($_GET['search'])){
+        if (is_array($rows) || is_object($rows)){
+          echo "<table class='table-style'>";
+            echo "<tr><th>Title</th><th>Author</th><th>ISBN</th><th>Quantity</th><th></th></tr>";
+            foreach($rows as $row){
+              echo "<tr>";
+              echo "<td>";
+              echo $row['title'];
               echo "</td>";
+              echo "<td>";
+              echo $row['author'];
+              echo "</td>";
+              echo "<td>";
+              echo $row['isbn'];
+              echo "</td>";
+              echo "<td>";
+              echo $row['quantity'];
+              echo "</td>";
+              if($row['quantity'] > 0){
+                echo "<td>";//view link
+                echo "<a href=scripts/check_out.php?isbn=".$row['isbn'].">Check Out</a>";
+                echo "</td>";
+              }
+              echo "</tr>";
             }
-            echo "</tr>";
-          }
-        echo "</table>";
+          echo "</table>";
         }
+      }
+      if(isset($_GET['checkedout'])){
+        if (is_array($rows) || is_object($rows)){
+          echo "<table class='table-style'>";
+            echo  "<tr><th>Student ID</th><th>ISBN</th><th>Quantity</th><th>Borrow Date</th><th>Return Date</th></tr>";
+            foreach($rows as $row){
+              echo "<tr>";
+              echo "<td>";
+              echo $row['student_id'];
+              echo "</td>";
+              echo "<td>";
+              echo $row['isbn'];
+              echo "</td>";
+              echo "<td>";
+              echo $row['quantity'];
+              echo "</td>";
+              echo "<td>";
+              echo $row['acquire_date'];
+              echo "</td>";
+              echo "<td>";
+              echo $row['return_date'];
+              echo "</td>";
+              echo "</tr>";
+            }
+            echo "</table>";
+        }
+      }
     ?></span>
   </div>
 </div>
